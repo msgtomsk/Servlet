@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Details</title>
+<link rel = "stylesheet" href = "css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+function ajx(){
+var ajax = new XMLHttpRequest()
+ajax.open("get","user.json")
+ajax.onreadystatechange = function(){
+		if(this.readyState === 4 && this.status === 200){
+			var data = JSON.parse(this.responseText)
+			var res = "";
+			for(i = 0 ; i < data.emp.length;i++){
+				res += "<tr><td>" + data.emp[i].firstName + "</td><td>" + data.emp[i].lastName+ "</td><td>" + data.emp[i].location+ "</td></tr>"+ data.emp[i].phoneNo+ "</td><td>";
+			}			
+			document.getElementById("values").innerHTML = res;
+		}
+	}
+ajax.send()
+}
+</script>
+</head>
+<body>
+<br><br>
+<div class="container">
+<button class = "btn btn-success" onclick = "ajx()">Show Details</button>
+<br> <br>
+<table class="table table-striped" >
+<thead>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Location</th>
+<th>PhoneNo</th>
+</tr>
+</thead>
+<tbody id="values">
+</tbody>
+</table>
+</div>
+</body>
+</html>

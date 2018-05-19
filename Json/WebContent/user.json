@@ -1,0 +1,8 @@
+{
+"emp" :[
+	{"firstName":"Steve","lastName":"Jobs","location":"CBE","phoneNo":9876543210},
+	{"firstName":"James","lastName":"Gosling","location":"KKDI","phoneNo":9876543211},
+	{"firstName":"Abdul","lastName":"Kalam","location":"Rameshwaram","phoneNo":9876542020},
+	{"firstName":"Msg","lastName":"Tovp","location":"Trichy","phoneNo":9876542019}
+]
+}
