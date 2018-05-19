@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+<title> Google Suggestions</title>
+<script>
+function Googlesearch(){
+var ajx=new XMLHttpRequest();
+ajx.open("get","user.json");
+var text="";
+var link = "";
+ajx.onreadystatechange=function(){
+	if(this.readyState===4 && this.status===200){
+		var d=JSON.parse(this.responseText);
+        var users=document.getElementById("val").value;
+        console.log(d);
+		for(i in d){
+			console.log(d[i]["keys"] );
+			if(users===""){
+				text+="";
+			}
+			else if(d[i]["keys"].startsWith(users)){
+				link = d[i]["link"];
+		      	text+=d[i]["keys"]+" "+"<a href="+link+">"+link+"</a>"+"<br>";
+			}
+		}
+		document.getElementById("data").innerHTML=text;	
+}
+}
+ajx.send();
+}
+</script>
+</head>
+<body>
+<div class="form-group" style = "margin : 50px">	
+    <label for="exampleFormControlTextarea1">Enter</label></br>
+    <input type="text" id = "val" onkeydown="Googlesearch()"/>
+    <div id="data"></div>
+  </div>
+</body>
+</html>
