@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>local storage</title>
+<link rel = "stylesheet" href = "css/bootstrap.min.css">
+<script>
+	function onlinefun(){
+		var value = localStorage.getItem("key")
+		console.log(value)
+		var ajx = new XMLHttpRequest()
+		ajx.open('POST','serv',true)		
+		ajx.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+		ajx.send("val="+value)
+		return
+	}
+	function check(){
+		if(navigator.onLine){
+			onlinefun()		
+		}
+		return
+	}
+	function storage(){
+		//console.log("inside")		
+		var val = document.getElementById("area").value
+		localStorage.setItem("key",val)
+		setTimeout(check,10000)
+		
+	}
+
+</script>
+
+</head>
+<body>	
+	<div class="form-group" style = "margin : 50px">
+	<p align = "center">Text will be automatically updated in database from local storage for every second </p>
+    <label for="exampleFormControlTextarea1">Enter text here</label>
+    <textarea  oninput = "storage()" class="form-control" id="area" rows="3"></textarea>
+  </div>
+</body>
+</html>
