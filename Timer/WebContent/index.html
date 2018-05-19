@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Timer</title>
+<link rel = "stylesheet" href = "css/bootstrap.min.css">
+<script>	
+	function ajxtimer(){		
+		var hour
+		var min
+		var sec
+		var date = new Date()
+		hour = date.getHours()
+		min = date.getMinutes()
+		sec = date.getSeconds()
+		setTimeout(function() {ajxclock(hour,min,sec)},1000)		
+	}
+	function ajxclock(hour,min,sec){
+		if(sec >= 59){
+			sec = 0
+			min++
+			if(min >= 59){
+				min = 0
+				hour++
+				if(hour >= 24){
+					hour = 0
+				}
+			}			
+		}
+		else{
+			sec++
+		}
+		var time = hour + " : " + min + " : " + sec
+		document.getElementById("time1").innerHTML = time
+		setTimeout(function() {ajxclock(hour,min,sec)},1000)
+	}
+</script>
+</head>
+<body>
+<div style = "margin : 50px">
+	<button class = "btn btn-success" onclick = "javascript:ajxtimer()" >Show Timer</button><br><br>
+	<span id = time1></span>
+	<div>
+</body>
+</html>
